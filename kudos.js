@@ -20,13 +20,33 @@ const KUDOS_TO_REAL = [
   Recebe: um int representando o número de pontos do usuário
   Retorna: um array contendo os kudos. Ex.: ['OK', 'GOOD'] 
 */
-function getKudosForUser(points) {}
+function getKudosForUser(points) {
+  let rest = points;
+  let integer;
+  let kudos = [];
+  let k = KUDOS_TO_POINTS.length - 1;
+  for (k; rest > 0 && k >= 0; k--){ // usando um for pois um .filter passaria por todas as posicoes do vetor
+    [integer, rest] = divisionFunction(rest, KUDOS_TO_POINTS[k].value);
+    for (i = 0 ; i < integer; i++) kudos.push(KUDOS_TO_POINTS[k].name);
+  }
+  return kudos;
+}
+
+function divisionFunction(dividend, divisor){
+  const integer = Math.floor(dividend/divisor);
+  const rest = dividend % divisor;
+  return [integer, rest]
+}
 
 /* 
   Recebe: Recebe um array contendo os nomes dos kudos de um usuário. Ex.: ['OK', 'GOOD']
   Retorna: a mensagem padrão com o valor em reais dos kudos por extenso. Ex.: Parabéns, você ganhou vinte e cinco reais
 */
 function getKudosValueMessageForUser(kudos) {}
+
+
+getKudosForUser(40);
+// getKudosValueMessageForUser(10);
 
 module.exports = {
   getKudosForUser,
