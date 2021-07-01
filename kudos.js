@@ -25,9 +25,7 @@ const { wrap } = require('./numberToText');
   Retorna: um array contendo os kudos. Ex.: ['OK', 'GOOD'] 
 */
 function getKudosForUser(points) {
-  let rest = points;
-  let integer;
-  let kudos = [];
+  let rest = points, integer, kudos = [];
   let k = KUDOS_TO_POINTS.length - 1;
   for (k; rest > 0 && k >= 0; k--){ // usando um for com rest > 0 pois um .filter passaria por todas as posicoes do vetor
     [integer, rest] = divisionFunction(rest, KUDOS_TO_POINTS[k].value);
@@ -53,23 +51,18 @@ function divisionFunction(dividend, divisor){
   Retorna: a mensagem padrão com o valor em reais dos kudos por extenso. Ex.: Parabéns, você ganhou vinte e cinco reais
 */
 function getKudosValueMessageForUser(kudos) {
-  
-	let sum = 0;
-	let listKudosText = ""; 
+	let sum = 0, listKudosText = ""; 
 	kudos.map((r, v) => {
 		const vKudo = KUDOS_TO_REAL.find(x => x.name === r).value;
 		sum += vKudo;
 		listKudosText += v !== kudos.length - 1 ? r + ", ": r;
 	});
-	
 	return "Você recebeu " + wrap(sum) + " reais em retorno aos kudos " + listKudosText + "!";
-  
 }
 
-console.log(getKudosValueMessageForUser(getKudosForUser(50)));
+console.log(getKudosValueMessageForUser(getKudosForUser(30)));
 
 module.exports = {
   getKudosForUser,
   getKudosValueMessageForUser
-  
 };

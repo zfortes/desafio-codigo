@@ -90,10 +90,9 @@ function wrap(number) {
 		throw new Error('A lib só converte números maiores ou iguais a 0 e menores que 1000000');
 	}
 
-
 	number = Math.floor(number); // confirma que sera apenas a parte inteira
-	var res = numberToText(number);
-	return res;
+	var numberName = numberToText(number);
+	return numberName;
 }
 
 module.exports = {
