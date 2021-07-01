@@ -36,6 +36,12 @@ function getKudosForUser(points) {
   return kudos;
 }
 
+/**
+ * Faz a divisao entre dois numero e retorna o resto e a parte inteira do resultado como uma tupla 
+ * @param {*} dividend 
+ * @param {*} divisor 
+ * @returns 
+ */
 function divisionFunction(dividend, divisor){
   const integer = Math.floor(dividend/divisor);
   const rest = dividend % divisor;
