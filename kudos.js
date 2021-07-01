@@ -1,24 +1,13 @@
-// Conversão de kudos para pontos
-const KUDOS_TO_POINTS = [
-  { name: 'OK', value: 5 },
-  { name: 'NICE', value: 10 },
-  { name: 'GOOD', value: 20 },
-  { name: 'GREAT', value: 50 },
-  { name: 'SUPER', value: 100 },
+// Conversão de kudos para pontos e reais
+const KUDOS = [
+  { name: 'OK', point: 5, reais: 2 },
+  { name: 'NICE', point: 10, reais: 5},
+  { name: 'GOOD', point: 20, reais: 8},
+  { name: 'GREAT', point: 50, reais: 15},
+  { name: 'SUPER', point: 100, reais: 25},
 ];
-
-// Conversão de kudos para reais
-const KUDOS_TO_REAL = [
-  { name: 'OK', value: 2 },
-  { name: 'NICE', value: 5 },
-  { name: 'GOOD', value: 8 },
-  { name: 'GREAT', value: 15 },
-  { name: 'SUPER', value: 25 },
-];
-
 
 const { wrap } = require('./numberToText');
-
 
 /* 
   Recebe: um int representando o número de pontos do usuário
@@ -26,10 +15,10 @@ const { wrap } = require('./numberToText');
 */
 function getKudosForUser(points) {
   let rest = points, integer, kudos = [];
-  let k = KUDOS_TO_POINTS.length - 1;
+  let k = KUDOS.length - 1;
   for (k; rest > 0 && k >= 0; k--){ // usando um for com rest > 0 pois um .filter passaria por todas as posicoes do vetor
-    [integer, rest] = divisionFunction(rest, KUDOS_TO_POINTS[k].value);
-    for (i = 0 ; i < integer; i++) kudos.push(KUDOS_TO_POINTS[k].name);
+    [integer, rest] = divisionFunction(rest, KUDOS[k].point);
+    for (i = 0 ; i < integer; i++) kudos.push(KUDOS[k].name);
   }
   return kudos;
 }
@@ -52,8 +41,8 @@ function divisionFunction(dividend, divisor){
 */
 function getKudosValueMessageForUser(kudos) {
 	let sum = 0, listKudosText = ""; 
-	kudos.map((r, v) => {
-		const vKudo = KUDOS_TO_REAL.find(x => x.name === r).value;
+	const t = kudos.forEach((r, v) => {
+		const vKudo = KUDOS.find(x => x.name === r).reais;
 		sum += vKudo;
 		listKudosText += v !== kudos.length - 1 ? r + ", ": r;
 	});
