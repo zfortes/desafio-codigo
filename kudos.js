@@ -60,9 +60,7 @@ function getKudosValueMessageForUser(kudos) {
   
 }
 
-// console.log(wrap(301));
-
-console.log(getKudosValueMessageForUser(getKudosForUser(40)));
+console.log(getKudosValueMessageForUser(getKudosForUser(50)));
 
 module.exports = {
   getKudosForUser,
