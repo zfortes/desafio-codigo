@@ -7,6 +7,10 @@ const KUDOS = [
   { name: 'SUPER', point: 100, reais: 25},
 ];
 
+
+/**
+ * Implementação própria no arquivo numberToText.js, apenas está modularizado
+ */
 const { wrap } = require('./numberToText');
 
 /* 
@@ -41,7 +45,7 @@ function divisionFunction(dividend, divisor){
 */
 function getKudosValueMessageForUser(kudos) {
 	let sum = 0, listKudosText = ""; 
-	const t = kudos.forEach((r, v) => {
+	kudos.forEach((r, v) => {
 		const vKudo = KUDOS.find(x => x.name === r).reais;
 		sum += vKudo;
 		listKudosText += v !== kudos.length - 1 ? r + ", ": r;
